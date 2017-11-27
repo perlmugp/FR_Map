@@ -42,7 +42,7 @@ var keepSmallIcon = L.icon({
 	var townsSmall = new L.LayerGroup();	
 
 		L.marker([28.26568, -45.23071],{icon: townSmallIcon}).bindPopup('<a class="townsSmallLink" href="http://forgottenrealms.wikia.com/wiki/Ashabenford">Ashabenford</a>').addTo(townsSmall),
-	    L.marker([31.0318, -60.8697],{icon: townSmallIcon}).bindPopup('<a class="townsSmallLink" href="http://forgottenrealms.wikia.com/wiki/Daggerford">Daggerford</a>').addTo(townsSmall), 
+	    L.marker([31.0318, -60.8697],{icon: townSmallIcon}).bindPopup('<a class="townsSmallLink" href="http://forgottenrealms.wikia.com/wiki/Daggerford">Daggerford</a><br>A small town on the north bank of River Delimbiyran. It it is the largest stop on the Trade Way between Waterdeep and Baldurs Gate.').addTo(townsSmall), 
 	    L.marker([25.89876, -49.58405],{icon: townSmallIcon}).bindPopup('<a class="townsSmallLink" href="http://forgottenrealms.wikia.com/wiki/Dhedluk">Dhedluk</a>').addTo(townsSmall), 
 	    L.marker([26.01606, -50.1004],{icon: townSmallIcon}).bindPopup('<a class="townsSmallLink" href="http://forgottenrealms.wikia.com/wiki/Espar">Espar</a>').addTo(townsSmall), 
 	    L.marker([26.29095, -49.56482],{icon: townSmallIcon}).bindPopup('<a class="townsSmallLink" href="http://forgottenrealms.wikia.com/wiki/Eveningstar">Eveningstar</a>').addTo(townsSmall), 	    
