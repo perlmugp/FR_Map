@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>Faerun Zoomable Map</title>
+
+	<meta charset="utf-8" />
+<meta name="keywords" content="Map, Faeurn, Forgotten Realms, RPG, Dungeons and Dragons, DND">
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<script>
+/**
+* Function that tracks a click on an outbound link in Google Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label.
+*/
+var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+     function () {
+     document.location = url;
+     }
+   });
+}
+</script>
+
+
+<link rel="stylesheet" href="https://88e54b460ed7328ee3144570a63a7fc8b79babc3.googledrive.com/host/0By_eTj_S2V5WbExocmI5elNCbXc/leaflet.css" />
+<link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/leaflet.draw.css" />
+<link rel="canonical" href="https://88e54b460ed7328ee3144570a63a7fc8b79babc3.googledrive.com/host/0By_eTj_S2V5WbExocmI5elNCbXc/faerun.html" />
+
+<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #map {
+			height: 100%;
+		}
+
+	</style>
+
+
+</head>
+
+
+<body>
+
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="map" style="width: 100%; height: 100%">
+
+
+
+
+
+
+	<script src="https://88e54b460ed7328ee3144570a63a7fc8b79babc3.googledrive.com/host/0By_eTj_S2V5WbExocmI5elNCbXc/leaflet.js"></script>
+	<script src="https://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script>
+    <script src="./Cities.js"></script>
+    <script src="./Roads.js"></script>
+    <script src="./Corrections.js"></script>  
+    <script src="./Towns.js"></script>  
+    <script src="./Ruins.js"></script>  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-3155359-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	<script>
+
+
+		
+
+
+
+
+		
+		var mbAttr = 'Gabe |<a href="//www.reddit.com/submit" onclick="window.location = &#39;//www.reddit.com/submit?url=&#39; + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit1.gif" alt="submit to reddit" border="0" /> </a>|<div class="fb-like" data-href="https://88e54b460ed7328ee3144570a63a7fc8b79babc3.googledrive.com/host/0By_eTj_S2V5WbExocmI5elNCbXc/faerun.html" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>|<div class="g-plusone" data-size="medium" data-annotation="none"></div>',
+			mbUrl = 'faerun-world-blank/{z}/{z}-{x}-{y}.png';
+			mbTextUrl = 'faerun-world-names/{z}/{z}-{x}-{y}-text.png';
+			mbGridUrl = 'faerun-world-blank/{z}-grid.png';
+			
+	    var baselayer   = L.tileLayer(mbUrl, {
+	    	
+	    	maxZoom: 10,
+
+			attribution: mbAttr,
+			
+			maxNativeZoom: 8,
+
+			id: 'faerun-world',
+			
+			zoomOffset: 0,
+			
+			noWrap: true,
+			
+			detectRetina: true,
+			
+			continuousWorld: false,});
+			
+		var textlayer = 	L.tileLayer(mbTextUrl, {
+    name:"Text",
+    maxZoom: 10,
+    maxNativeZoom: 8,
+    detectRetina: true,
+    noWrap: true,
+	continuousWorld: false
+});
+		var gridlayer = 	L.tileLayer(mbGridUrl, {
+    name:"Grid",
+    maxZoom: 9,
+    maxNativeZoom: 9,
+    detectRetina: true,
+    noWrap: true,
+	continuousWorld: false
+});
+
+		var map = L.map('map', {
+		    center:[34, -60],
+		    zoom: 7,
+		    layers: [baselayer]
+		    });
+
+
+		var baseLayers = {
+			"Baselayer": baselayer
+		};
+		
+		var overlays = {
+			"Cities": cities,
+			"Small Cities": citiesSmall,
+			"Large Towns": townsLarge,
+			"Small Towns": townsSmall,
+			"Villages": villages,
+			"Ruins": ruins,
+			"Roads": roads,
+			"Grid": gridlayer,
+			"Text layer": textlayer,
+			"Corrections": corrections
+		};
+
+		
+		L.control.scale().addTo(map);
+
+		L.control.layers(baseLayers, overlays, {collapsed: true}).addTo(map);
+
+
+
+
+
+
+		var popup = L.popup();
+
+		function onMapClick(e) {
+
+			popup
+
+				.setLatLng(e.latlng)
+				
+				
+				.setContent("<a href=https://docs.google.com/forms/d/16M7mEvrSVZ9WbTCIwy0O5egwPztdVh5yvNQH5eTeVUk/viewform?entry.1289072727&entry.690926401&entry.1812091808&entry.512014576="  + e.latlng.toString().replace(/\s*,\s*/g, '_') + ">To post a comment on this location click this link.</a>")
+
+				.openOn(map);
+
+		}
+
+		
+		
+map.on('click', onMapClick);
+
+
+
+	</script>
+
+
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+	
+	</body>
+</html>
