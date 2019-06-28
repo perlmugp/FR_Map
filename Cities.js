@@ -56,7 +56,7 @@ var keepMedIcon = L.icon({
 		L.marker([36.59568, -57.79083],{icon: cityIcon}).bindPopup('<a class="cityLink" href="http://forgottenrealms.wikia.com/wiki/Silverymoon">Silverymoon</a>').addTo(cities), 
 		L.marker([36.52729, -55.89569],{icon: cityIcon}).bindPopup('<a class="cityLink" href="http://forgottenrealms.wikia.com/wiki/Sundabar">Sundabar</a>').addTo(cities),  
 		L.marker([24.95369, -49.76532],{icon: cityIcon}).bindPopup('<a class="cityLink" href="http://forgottenrealms.wikia.com/wiki/Suzail">Suzail</a>').addTo(cities),  
-		L.marker([31.80289, -62.01233],{icon: cityIcon}).bindPopup('<a class="cityLink" href="http://forgottenrealms.wikia.com/wiki/Waterdeep">Waterdeep</a>').addTo(cities),
+		L.marker([31.80289, -62.01233],{icon: cityIcon}).bindPopup('<a class="cityLink" href="https://raw.githubusercontent.com/perlmugp/FR_Map/master/FRNotes_new.html#Waterdeep">Waterdeep</a>').addTo(cities),
 		L.marker([23.9461, -47.0874],{icon: cityIcon}).bindPopup('<a class="cityLink" href="http://forgottenrealms.wikia.com/wiki/Westgate">Westgate</a>').addTo(cities);
 		
 	var citiesSmall = new L.LayerGroup();
